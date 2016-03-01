@@ -1,0 +1,48 @@
+# behat.yml
+default:
+    formatter:
+        name:                    progress
+        parameters:
+            decorated:           true
+            verbose:             false
+            time:                true
+            language:            fr
+            output_path:         null
+            multiline_arguments: true
+    paths:
+        features:  Tests/Functional
+        bootstrap: %behat.paths.features%/bootstrap
+    context:
+        parameters:
+            # Date for the test
+            customDate: "2013-08-13 14:42:42"
+
+            #max time
+            maxTime: 200
+
+wip:
+    filters:
+        tags: "@wip"
+    formatter:
+        name: progress
+ci:
+    formatter:
+        name:       progress,junit,html
+        parameters:
+            output_path: null,tmp/behat/behatJunit,tmp/behat/behat_report.html
+    context:
+        parameters:
+            # Whether or not to collect code coverage
+            enableCodeCoverage: true
+
+            # Path to store the generated code coverage report
+            coveragePath: /tmp/behat/coverage
+
+            # White list of directories to collect coverage about
+            whitelist:
+                - src
+            # Black list of directories to not collect coverage about
+            blacklist:
+                - vendor
+                - tmp
+                - Tests

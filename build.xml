@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<project name="composer-lib-utils" default="maintainability" basedir='.'>
+    <target name="maintainability"
+        depends="phploc, phpcs, phpcpd, phpmd, behat">
+    </target>
+     <target name="phploc">
+        <exec executable="phploc" passthru="true" checkreturn="true">
+            <arg path="src/"/>
+        </exec>
+    </target>
+    <target name="phpcs">
+        <exec executable="phpcs" passthru="true" checkreturn="true">
+            <arg value="-p"/>
+            <arg value="--standard=PSR2"/>
+            <arg path="src/"/>
+        </exec>
+    </target>
+    <target name="phpcpd">
+        <exec executable="phpcpd" passthru="true" checkreturn="true">
+            <arg value="--progress"/>
+            <arg path="src/"/>
+        </exec>
+    </target>
+    <target name="phpmd">
+        <exec executable="phpmd" passthru="true" checkreturn="true">
+            <arg path="src/"/>
+            <arg value="text"/>
+            <arg value="phpmd.xml"/>
+        </exec>
+    </target>
+    <target name="behat" description="Run behat test">
+        <exec executable="behat" passthru="true" checkreturn="true">
+            <arg value="-p"/>
+            <arg value="ci"/>
+        </exec>
+    </target>
+</project>
