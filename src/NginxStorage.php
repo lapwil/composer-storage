@@ -5,8 +5,6 @@ namespace ETNA\Storage;
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7;
 use GuzzleHttp\Promise;
-use GuzzleHttp\Handler\MockHandler;
-use GuzzleHttp\HandlerStack;
 use GuzzleHttp\Psr7\Response;
 use GuzzleHttp\Psr7\Request;
 use GuzzleHttp\Exception\RequestException;
@@ -20,7 +18,7 @@ class NginxStorage extends AbstractStorage
     private $format    = null;
     public  $container = [];
 
-    function __construct($url, $secret, $format = '%1$s.%2$s.%3$s')
+    function __construct($url, $secret, $format = '%1$s.%2$s.%3$s', $handler = null)
     {
         $this->url    = $url;
         $this->secret = $secret;
@@ -36,60 +34,38 @@ class NginxStorage extends AbstractStorage
 
         // On s'assure d'avoir un seul / a la fin de la chaine
         $this->url = rtrim($this->url, "/") . "/";
+
+        if (null !== $handler) {
+            $this->client = new Client([
+                "base_uri" => $this->url,
+                "handler"  => $handler
+            ]);
+        }
     }
 
     protected function getHTTPClient()
     {
         if (null === $this->client) {
-            if ("testing" === getenv("APPLICATION_ENV")) {
-                $path = [
-                    "/../Tests/Data/dl/activities/IDV-OPTD/003/quest/MyCRD/conf.ini",
-                    "/../Tests/Functional/features/requests/conf_modified.ini",
-                    "/../Tests/Functional/features/requests/test.txt"
-                ];
-
-                $mock = new MockHandler([
-                    new Response(200, [], "OK"),
-                    new Response(404, [], "Not Found"),
-                    new Response(200, [], file_get_contents(__DIR__ . $path[0])),
-                    new Response(404, [], "Not Found"),
-                    new Response(204, [], "No Content"),
-                    new Response(200, [], file_get_contents(__DIR__ . $path[1])),
-                    new Response(201, [], "Created"),
-                    new Response(200, [], file_get_contents(__DIR__ . $path[2])),
-                    new Response(404, [], "Not Found"),
-                    new Response(404, [], "Not Found")
-                ]);
-
-                $handler      = HandlerStack::create($mock);
-                $this->client = new Client(
-                    [
-                        "base_uri" => $this->url,
-                        "handler"  => $handler
-                    ]
-                );
-            } else {
-                $this->client = new Client(["base_uri" => $this->url]);
-            }
+            $this->client = new Client(["base_uri" => $this->url]);
         }
 
         return $this->client;
     }
 
     // $path = /activities/public/tpotperjfgsl
-    protected function forge($file_path, $basepath = '')
+    protected function forge($file_path, $base_path = '')
     {
         // On s'assure de ne pas avoir de / a la fin de la chaine
         // parce que celui de base est mis dans le constructeur
         // et qu'il ne faut SURTOUT PAS celui de la fin sinon ça ne marche pas...
-        $basepath  = trim($basepath, '/');
-        $file_path = ltrim($file_path, '/');
-        $path      = "{$basepath}/{$file_path}";
+        $base_path = trim($base_path, '/');
+        $file_path = trim($file_path, '/');
+        $path      = "{$base_path}/{$file_path}";
 
-        $expire   = time() + 3600; // par défaut, le lien sera valable 1h
-        $url      = Psr7\Uri::resolve(Psr7\uri_for($this->url), $path);
+        $expire = time() + 3600; // par défaut, le lien sera valable 1h
+        $url    = Psr7\Uri::resolve(Psr7\uri_for($this->url), $path);
 
-        $md5 = base64_encode(md5(sprintf($this->format, $expire, $url->getPath(), $this->secret), true));
+        $md5 = base64_encode(md5(sprintf($this->format, $expire, urldecode($url->getPath()), $this->secret), true));
         $md5 = strtr($md5, '+/', '-_');
         $md5 = str_replace('=', '', $md5);
 
@@ -122,7 +98,7 @@ class NginxStorage extends AbstractStorage
             $response = $this->getHTTPClient()->send($request);
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
-            return $response->getReasonPhrase();
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }
 
         return $response->getBody()->getContents();
@@ -137,7 +113,7 @@ class NginxStorage extends AbstractStorage
             $response = $this->getHTTPClient()->send($request);
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
-            return $response;
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }
 
         return $response;
@@ -153,7 +129,7 @@ class NginxStorage extends AbstractStorage
             $response = $this->getHTTPClient()->send($request);
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
-            return $response;
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }
 
         return $response;
@@ -168,7 +144,7 @@ class NginxStorage extends AbstractStorage
             $response = $this->getHTTPClient()->send($request);
         } catch (RequestException $exception) {
             $response = $exception->getResponse();
-            return $response;
+            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
         }
 
         return $response;

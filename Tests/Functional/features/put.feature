@@ -17,8 +17,8 @@ Scénario: Ajouter un fichier
 
 Scénario: Remplacer un fichier dans un répertoire qui n'existe pas
     Quand je veux remplacer le fichier "NOO-XIST/001/project/NoXist/conf.ini" situé dans "activities" par le fichier "conf.ini"
-    Alors la réponse devrait être "Not Found"
+    Alors je devrais avoir une exception "Not Found"
 
 Scénario: Ajouter un fichier dans un répertoire qui n'existe pas
     Quand je veux ajouter le fichier "NOO-XIST/001/project/NoXist/noexist.blaaaa" situé dans "activities" avec le fichier "test.txt"
-    Alors la réponse devrait être "Not Found"
+    Alors je devrais avoir une exception "Not Found"

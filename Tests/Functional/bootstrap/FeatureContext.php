@@ -60,6 +60,12 @@ class FeatureContext extends BehatContext
         self::$server->tearDown();
     }
 
+    /**
+     * Error handler
+     *
+     * @param array $data   datas to test
+     * @param array $errors errors
+     */
     private function handleErrors($data, $errors)
     {
         if ($nb_err = count($errors)) {
@@ -73,8 +79,12 @@ class FeatureContext extends BehatContext
      */
     public function jeVeuxRecupererLeContenuDuFichierSitueDans($path, $basepath)
     {
-        $app        = self::$silex_app;
-        $this->data = $app["file-manager"]->get($path, $basepath);
+        $app = self::$silex_app;
+        try {
+            $this->data = $app["file-manager"]->get($path, $basepath);
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
+        }
     }
 
     /**
@@ -83,10 +93,14 @@ class FeatureContext extends BehatContext
      */
     public function jeVeuxRemplacerLeFichierSitueDansParLeFichier($path, $basepath, $file)
     {
-        $app        = self::$silex_app;
-        $file       = realpath($this->results_path . "/" . $file);
-        $content    = file_get_contents($file);
-        $this->data = $app["file-manager"]->put($path, $content, $basepath)->getReasonPhrase();
+        $app     = self::$silex_app;
+        $file    = realpath($this->results_path . "/" . $file);
+        $content = file_get_contents($file);
+        try {
+            $this->data = $app["file-manager"]->put($path, $content, $basepath)->getReasonPhrase();
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
+        }
     }
 
     /**
@@ -94,8 +108,12 @@ class FeatureContext extends BehatContext
      */
     public function jeVeuxSupprimerLeFichierSitueDans($path, $basepath)
     {
-        $app        = self::$silex_app;
-        $this->data = $app["file-manager"]->delete($path, $basepath)->getReasonPhrase();
+        $app = self::$silex_app;
+        try {
+            $this->data = $app["file-manager"]->delete($path, $basepath)->getReasonPhrase();
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
+        }
     }
 
     /**
@@ -117,5 +135,15 @@ class FeatureContext extends BehatContext
     {
         $this->check($error_message, $this->data, "result", $errors);
         $this->handleErrors($this->data, $errors);
+    }
+
+    /**
+     * @Given /^je devrais avoir une exception "([^"]*)"$/
+     */
+    public function jeDevraisAvoirUneException($exception)
+    {
+        if ($exception != $this->exception) {
+            throw new Exception("Expected: '{$exception}'; got: '{$this->exception}'");
+        }
     }
 }

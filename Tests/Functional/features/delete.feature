@@ -9,4 +9,4 @@ Scénario: Supprimer un fichier
 
 Scénario: Supprimer un fichier qui n'existe pas
     Quand je veux supprimer le fichier "IDV-OPTD/003/quest/myCRD/noexist.blaaaa" situé dans "activities"
-    Alors la réponse devrait être "Not Found"
+    Alors je devrais avoir une exception "Not Found"

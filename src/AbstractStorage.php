@@ -4,26 +4,26 @@ namespace ETNA\Storage;
 
 abstract class AbstractStorage implements StorageInterface
 {
-    public function getFiles(Array $paths)
+    public function getFiles(array $files)
     {
         $result = [];
-        foreach ($paths as $path) {
-            $result[$path] = $this->get($path);
+        foreach ($files as $file) {
+            $result[$file["path"]] = $this->get($file["path"], $file["basepath"]);
         }
         return $result;
     }
 
-    public function putFiles(Array $files)
+    public function putFiles(array $files)
     {
-        foreach ($files as $path => $stream) {
-            $this->put($path, $stream);
+        foreach ($files as $file) {
+            $this->put($file["path"], $file["stream"], $file["basepath"]);
         }
     }
 
-    public function deleteFiles(Array $paths)
+    public function deleteFiles(array $files)
     {
-        foreach ($paths as $path) {
-            $this->delete($path);
+        foreach ($files as $file) {
+            $this->delete($file["path"], $file["basepath"]);
         }
     }
 }

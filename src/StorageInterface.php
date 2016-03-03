@@ -11,7 +11,7 @@ interface StorageInterface
     public function delete($file_path, $basepath = '');
     public function downloadFile($file_path, $basepath = '');
 
-    public function getFiles(Array $paths);
-    public function putFiles(Array $files);
-    public function deleteFiles(Array $paths);
+    public function getFiles(array $files);
+    public function putFiles(array $files);
+    public function deleteFiles(array $files);
 }

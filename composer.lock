@@ -2451,15 +2451,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/squizlabs/PHP_CodeSniffer.git",
-                "reference": "fd4cddc0663f216c4b9d9f3cd5d52bc08ab3e951"
+                "reference": "4f31ed6fad8867ec1e00f8b51d07b0f3dcd45713"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/fd4cddc0663f216c4b9d9f3cd5d52bc08ab3e951",
-                "reference": "fd4cddc0663f216c4b9d9f3cd5d52bc08ab3e951",
+                "url": "https://api.github.com/repos/squizlabs/PHP_CodeSniffer/zipball/4f31ed6fad8867ec1e00f8b51d07b0f3dcd45713",
+                "reference": "4f31ed6fad8867ec1e00f8b51d07b0f3dcd45713",
                 "shasum": ""
             },
             "require": {
+                "ext-simplexml": "*",
                 "ext-tokenizer": "*",
                 "ext-xmlwriter": "*",
                 "php": ">=5.1.2"
@@ -2520,7 +2521,7 @@
                 "phpcs",
                 "standards"
             ],
-            "time": "2016-02-29 23:14:08"
+            "time": "2016-03-02 21:34:56"
         },
         {
             "name": "symfony/config",

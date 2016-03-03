@@ -37,7 +37,7 @@ class ServerContext
 
         $output = [];
         exec($command, $output);
-        echo "Server started : {$host}:{$port} {$document_root}";
+        echo "Server started : {$host}:{$port} {$document_root}\n";
         self::$pid = (int) $output[0];
 
         return $output;
@@ -66,7 +66,7 @@ class ServerContext
      */
     private static function killProcess($pid)
     {
-        exec('kill ' . (int) $pid);
+        exec('kill ' . $pid);
     }
 
 }

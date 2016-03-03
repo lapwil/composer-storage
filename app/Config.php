@@ -50,8 +50,8 @@ class Config implements ServiceProviderInterface
         $app['application_path']      = realpath(__DIR__ . "/../");
         $app['application_namespace'] = __NAMESPACE__;
 
-        $app["dl-url"]         = getenv("DOWNLOAD_URL");
-        $app["dl-url-key"]     = getenv("DOWNLOAD_URL_KEY");
+        $app["dl-url"]     = getenv("DOWNLOAD_URL");
+        $app["dl-url-key"] = getenv("DOWNLOAD_URL_KEY");
 
         ini_set('display_errors', true);
         ini_set('xdebug.var_display_max_depth', 100);
