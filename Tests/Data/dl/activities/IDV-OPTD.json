@@ -1,0 +1,142 @@
+[
+    {
+        "path": "001\/project\/myCRD\/public\/MyCRD.html",
+        "mime\/type": "text\/html",
+        "size": 4402
+    },
+    {
+        "path": "001\/project\/myCRD\/public\/commands-generator.py",
+        "mime\/type": "text\/x-python",
+        "size": 1382
+    },
+    {
+        "path": "001\/project\/myCRD\/public\/medium-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 665950
+    },
+    {
+        "path": "001\/project\/myCRD\/public\/small-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 66004
+    },
+    {
+        "path": "002\/quest\/myCRD\/conf.ini",
+        "mime\/type": "text\/plain",
+        "size": 406
+    },
+    {
+        "path": "002\/quest\/myCRD\/public\/MyCRD.html",
+        "mime\/type": "text\/html",
+        "size": 4402
+    },
+    {
+        "path": "002\/quest\/myCRD\/public\/commands-generator.py",
+        "mime\/type": "text\/x-python",
+        "size": 1382
+    },
+    {
+        "path": "002\/quest\/myCRD\/public\/medium-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 665950
+    },
+    {
+        "path": "002\/quest\/myCRD\/public\/small-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 66004
+    },
+    {
+        "path": "002\/quest\/myCRD\/stages\/Soutenance finale\/public\/sujet.html",
+        "mime\/type": "text\/html",
+        "size": 801
+    },
+    {
+        "path": "002\/quest\/myCRD\/stages\/Suivi Aconnect\/public\/sujet.html",
+        "mime\/type": "text\/html",
+        "size": 847
+    },
+    {
+        "path": "002\/quest\/myCRD\/stages\/Suivi Asynchrone 1\/public\/sujet.html",
+        "mime\/type": "text\/html",
+        "size": 874
+    },
+    {
+        "path": "002\/quest\/myCRD\/stages\/Suivi Asynchrone 2\/public\/sujet.html",
+        "mime\/type": "text\/html",
+        "size": 878
+    },
+    {
+        "path": "003\/quest\/myCRD\/conf.ini",
+        "mime\/type": "text\/plain",
+        "size": 1051
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/MyCRD.html",
+        "mime\/type": "text\/html",
+        "size": 2125
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/commands-generator.py",
+        "mime\/type": "text\/x-python",
+        "size": 1382
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/medium-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 665950
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/small-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 66004
+    },
+    {
+        "path": "003\/quest\/myCRD\/scripts\/composer.lock",
+        "mime\/type": "text\/plain",
+        "size": 7729
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 1\/public\/MyCRD.html",
+        "mime\/type": "text\/plain",
+        "size": 5
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 1\/public\/etape 1.html",
+        "mime\/type": "text\/html",
+        "size": 2985
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 1\/scripts\/correction.txt",
+        "mime\/type": "inode\/x-empty",
+        "size": 0
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 2\/public\/etape 2.html",
+        "mime\/type": "text\/html",
+        "size": 1309
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Soutenance finale\/public\/sujet.html",
+        "mime\/type": "text\/html",
+        "size": 801
+    },
+    {
+        "path": "003\/quest\/myCRD\/testdir\/correctio 'n.txt",
+        "mime\/type": "text\/plain",
+        "size": 4
+    },
+    {
+        "path": "003\/quest\/myCRD\/testdir\/correctio'n.txt",
+        "mime\/type": "text\/plain",
+        "size": 4
+    },
+    {
+        "path": "IDV-OPTD.json",
+        "mime\/type": "text\/plain",
+        "size": 3776
+    },
+    {
+        "path": "module.json",
+        "mime\/type": "text\/plain",
+        "size": 3670
+    }
+]

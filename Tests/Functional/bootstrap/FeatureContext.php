@@ -88,35 +88,6 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux remplacer le fichier "([^"]*)" situé dans "([^"]*)" par le fichier "([^"]*)"$/
-     * @Given /^je veux ajouter le fichier "([^"]*)" situé dans "([^"]*)" avec le fichier "([^"]*)"$/
-     */
-    public function jeVeuxRemplacerLeFichierSitueDansParLeFichier($path, $basepath, $file)
-    {
-        $app     = self::$silex_app;
-        $file    = realpath($this->results_path . "/" . $file);
-        $content = file_get_contents($file);
-        try {
-            $this->data = $app["file-manager"]->put($path, $content, $basepath)->getReasonPhrase();
-        } catch (\Exception $exception) {
-            $this->exception = $exception->getMessage();
-        }
-    }
-
-    /**
-     * @Given /^je veux supprimer le fichier "([^"]*)" situé dans "([^"]*)"$/
-     */
-    public function jeVeuxSupprimerLeFichierSitueDans($path, $basepath)
-    {
-        $app = self::$silex_app;
-        try {
-            $this->data = $app["file-manager"]->delete($path, $basepath)->getReasonPhrase();
-        } catch (\Exception $exception) {
-            $this->exception = $exception->getMessage();
-        }
-    }
-
-    /**
      * @Then /^le résultat devrait être identique au fichier "(.*)"$/
      */
     public function leResultatDevraitRessemblerAuFichier($file)

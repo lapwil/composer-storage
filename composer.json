@@ -1,7 +1,7 @@
 {
     "name": "etna/composer-storage",
-    "description": "Paquet composer permettant de créer, modifier ou supprimer des fichiers",
-    "keywords": ["utils", "silex", "composer"],
+    "description": "Paquet composer permettant de créer, modifier ou supprimer des fichiers sur un server distant",
+    "keywords": ["utils", "composer"],
     "license": "proprietary",
     "authors": [
         {
@@ -33,6 +33,11 @@
     "autoload": {
         "psr-4": {
             "ETNA\\Storage\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TestStorage\\": "app/"
         }
     },
     "scripts": {

@@ -18,7 +18,7 @@ class NginxStorage extends AbstractStorage
     private $format    = null;
     public  $container = [];
 
-    function __construct($url, $secret, $format = '%1$s.%2$s.%3$s', $handler = null)
+    function __construct($url, $secret, $format = '%1$s.%2$s.%3$s')
     {
         $this->url    = $url;
         $this->secret = $secret;
@@ -34,13 +34,6 @@ class NginxStorage extends AbstractStorage
 
         // On s'assure d'avoir un seul / a la fin de la chaine
         $this->url = rtrim($this->url, "/") . "/";
-
-        if (null !== $handler) {
-            $this->client = new Client([
-                "base_uri" => $this->url,
-                "handler"  => $handler
-            ]);
-        }
     }
 
     protected function getHTTPClient()
