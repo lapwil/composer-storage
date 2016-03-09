@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd" />
+<html xml:lang="fr"><head>
+<meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+<title>MyCRD</title>
+<link media="screen" href="https://intra.etna-alternance.net/css/sujet-html.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body>
+<h1>MyCRD</h1>
+<div class="forbidden">
+    Cette &eacute;tape sera suivi d&#x27;un suivi pour faire le point sur votre avancement.
+</div>
+<h2>Etape 1 - R&eacute;alisation du projet</h2>
+<p>Le programme doit impl&eacute;menter la totalit&eacute; des op&eacute;rations n&eacute;cessaires pour ex&eacute;cuter les commandes qui lui sont pass&eacute;es :
+    <ul>
+        <li>Ajouter une entr&eacute;e</li>
+        <li>Supprimer une entr&eacute;e</li>
+        <li>Rechercher une entr&eacute;e.</li>
+    </ul>
+</p>
+
+<p>Le programme ne prend aucun argument. Son fichier de commandes est lu sur l'entr&#233;e standard.</p>
+<p>Les r&#233;ponses sont fournies sur la sortie standard.</p>
+<p>Vous n&#x27;avez pas &agrave; stocker les valeurs entre deux ex&eacute;cutions.</p>
+
+<p>En fonction des commandes pass&#233;es, les r&#233;ponses diff&#232;rent.</p>
+
+<p>
+    <ul>
+        <li>Commande de cr&#233;ation :</li>
+        <ul>
+            <li>si la cl&#233;e existe, la valeur est mise &#224; jour.</li>
+            <li>si la cl&#233;e n'existe pas, la paire cl&#233;e/valeur est ajout&#233;e.</li>
+            <li>dans les deux cas, la cl&#233;e est retourn&#233;e.</li>
+        </ul>
+        <li>Commande de suppression :</li>
+        <ul>
+            <li>si la cl&#233;e existe, sa valeur est retourn&#233;e.</li>
+            <li>si la cl&#233;e n'existe pas, -1 est retourn&#233;.</li>
+        </ul>
+        <li>Commande de recherche :</li>
+        <ul>
+            <li>si la cl&#233;e existe, sa valeur est retourn&#233;e.</li>
+            <li>si la cl&#233;e n'existe pas, -1 est retourn&#233;.</li>
+        </ul>
+    </ul>
+</p>
+
+<h3>Format des commandes</h3>
+    <p>Le format de commande permet de g&#233;rer trois types de commandes :
+        <ul>
+            <li>cr&#233;ation;</li>
+            <li>suppression;</li>
+            <li>recherche.</li>
+        </ul>
+    </p>
+    <p>Format d'une commande de cr&#233;ation :</p>
+    <pre class="terminal">
+<b>&#139;cl&#233;e&#155;</b>&#139;espace&#155;<b>&#139;valeur&#155;</b>\n
+    </pre>
+    <p>Format d'une commande de suppression :</p>
+    <pre class="terminal">
+<b>&#139;cl&#233;e&#155;</b>&#139;espace&#155;<b>D</b>\n
+    </pre>
+    <p>Format d'une commande de recherche :</p>
+    <pre class="terminal">
+<b>&#139;cl&#233;e&#155;</b>\n
+    </pre>
+
+    <p>Exemple de fichier de commande :</p>
+    <code class="multiline">
+32
+32 D
+34 4
+34
+34 5
+34
+34 D
+34
+    </code>
+    <p>Sortie attendue :</p>
+    <pre class="terminal">
+-1
+-1
+34
+4
+34
+5
+5
+-1
+    </pre>
+
+    <p>Exemple d'execution compl&egrave;te :</p>
+    <pre class="terminal">
+$>./MyCrd < commande-test.lst
+-1
+-1
+34
+4
+34
+5
+5
+-1
+    </pre>
+
+    <p>Votre programme devra &ecirc;tre totalement d&eacute;bugg&eacute; pour le premier suivi</p>
+</body>
+</html>
