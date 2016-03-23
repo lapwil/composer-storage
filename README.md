@@ -9,6 +9,13 @@ Après clone du dépot, se mettre à la racine et :
 ================================================
 
  * composer install
+ * sed -i '' -e "s#\$HOME#$HOME#g" $HOME/ETNA/composer-storage/Tests/Functional/bootstrap/nginx.conf
+
+Pour que les tests se lancent:
+==============================
+
+* brew tap homebrew/nginx
+* brew install nginx-full --with-gunzip --with-webdav
 
 Pour que les tests fonctionnent, il faut :
 ==========================================

@@ -1,7 +1,7 @@
 # language: fr
 
-@feature/get
-Fonctionnalité: Récupère le contenu d'un ou plusieurs fichiers, la liste des fichiers ou le lien pour télécharger le fichier
+@feature/get @filer
+Fonctionnalité: Récupère le contenu d'un ou plusieurs fichiers
 
 Scénario: Récupérer le contenu d'un fichier
     Quand je veux récupérer le contenu du fichier "IDV-OPTD/003/quest/myCRD/conf.ini" situé dans "activities"

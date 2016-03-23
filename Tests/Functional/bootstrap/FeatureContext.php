@@ -14,7 +14,7 @@ class FeatureContext extends BehatContext
 
     static private $vhosts = ["/test-behat"];
     static private $_parameters;
-    private $app;
+    static private $server;
     private $data;
     private $exception;
 
@@ -33,8 +33,6 @@ class FeatureContext extends BehatContext
             "cookies" => [],
             "files"   => [],
         ];
-
-        $this->app = self::$silex_app;
     }
 
     /**
@@ -42,10 +40,9 @@ class FeatureContext extends BehatContext
      */
     public static function startServer()
     {
-        $prefix = realpath(__DIR__ . "/../..");
-        $conf   = __DIR__ . "/nginx.conf";
-        exec("nginx -c {$conf} -p ${prefix}/");
-        echo("Nginx server started\n");
+        $conf = __DIR__ . "/nginx.conf";
+        $tmp = __DIR__ . "/../../Data/dl/tmp";
+        exec("nginx -c {$conf}");
         self::deleteFiles();
     }
 
@@ -55,34 +52,32 @@ class FeatureContext extends BehatContext
     public static function stopServer()
     {
         exec("nginx -s stop");
-        echo("\nNginx server stopped\n");
     }
 
     /**
-     * @BeforeScenario
+     * @BeforeScenario @filer
      */
     public static function addFiles()
     {
-        $path      = realpath(__DIR__ . "/../../Data/dl/activities");
-        $dest      = realpath(__DIR__ . "/../../Data/dl/tmp");
+        $path      = __DIR__ . "/../../Data/dl/activities";
+        $dest      = __DIR__ . "/../../Data/dl/tmp";
         $directory = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
         $iterator  = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $item) {
             if ($item->isDir()) {
-                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+              mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             } else {
-                copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+              copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             }
         }
     }
 
     /**
-     * @AfterScenario
+     * @AfterScenario @filer
      */
     public static function deleteFiles()
     {
-        $dest = realpath(__DIR__ . "/../../Data/dl/tmp");
-        chmod("{$dest}", 0755);
+        $dest = __DIR__ . "/../../Data/dl/tmp";
         exec("rm -r {$dest}");
         mkdir($dest, 0755);
     }
@@ -296,35 +291,31 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux ajouter la liste de répertoire contenue dans "([^"]*)"$/
+     * @Given /^je veux remplacer le fichier "([^"]*)" situé dans "([^"]*)" par le fichier "([^"]*)"$/
+     * @Given /^je veux ajouter le fichier "([^"]*)" situé dans "([^"]*)" avec le fichier "([^"]*)"$/
      */
-    public function jeVeuxAjouterLaListeDeRepertoireContenueDans($json)
+    public function jeVeuxRemplacerLeFichierSitueDansParLeFichier($path, $basepath, $file)
     {
-        $json  = realpath($this->requests_path . $json);
-        $files = json_decode(file_get_contents($json), true);
-        if (null === $files) {
-            throw new Exception("json_decode error");
-        }
-
+        $app     = self::$silex_app;
+        $file    = realpath($this->results_path . "/" . $file);
+        $content = file_get_contents($file);
         try {
-            $this->data = $this->app["file-manager"]->putFolders($files);
+            $this->data = $app["file-manager"]->put($path, $content, $basepath)->getReasonPhrase();
         } catch (\Exception $exception) {
             $this->exception = $exception->getMessage();
-        }
-
-        foreach ($this->data as &$data) {
-            $data = $data->getReasonPhrase();
         }
     }
 
     /**
-     * @Then /^les résultats devraient être "([^"]*)"$/
+     * @Given /^je veux supprimer le fichier "([^"]*)" situé dans "([^"]*)"$/
      */
-    public function lesResultatsDevraientEtre($error_message)
+    public function jeVeuxSupprimerLeFichierSitueDans($path, $basepath)
     {
-        foreach ($this->data as $data) {
-            $this->check($error_message, $data, "result", $errors);
-            $this->handleErrors($data, $errors);
+        $app = self::$silex_app;
+        try {
+            $this->data = $app["file-manager"]->delete($path, $basepath)->getReasonPhrase();
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
         }
     }
 }
