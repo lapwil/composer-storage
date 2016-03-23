@@ -86,6 +86,7 @@ class NginxStorage extends AbstractStorage
     public function get($file_path, $basepath = '')
     {
         $url = $this->forge($file_path, $basepath);
+
         try {
             $request  = new Request('GET', $url);
             $response = $this->getHTTPClient()->send($request);

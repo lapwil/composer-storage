@@ -25,6 +25,8 @@ class FeatureContext extends BehatContext
     static private $vhosts = ["/test-behat"];
     static private $_parameters;
     static private $server;
+    private $data;
+    private $exception;
 
     /**
      * Initializes context.
@@ -41,7 +43,6 @@ class FeatureContext extends BehatContext
             "cookies" => [],
             "files"   => [],
         ];
-        self::$server = new ServerContext();
     }
 
     /**
@@ -49,7 +50,10 @@ class FeatureContext extends BehatContext
      */
     public static function startServer()
     {
-        self::$server->startBuiltInHttpd("0.0.0.0", "4343", "./Tests/Data/dl");
+        $conf = __DIR__ . "/nginx.conf";
+        $tmp = __DIR__ . "/../../Data/dl/tmp";
+        exec("nginx -c {$conf}");
+        self::deleteFiles();
     }
 
     /**
@@ -57,7 +61,35 @@ class FeatureContext extends BehatContext
      */
     public static function stopServer()
     {
-        self::$server->tearDown();
+        exec("nginx -s stop");
+    }
+
+    /**
+     * @BeforeScenario @filer
+     */
+    public static function addFiles()
+    {
+        $path      = __DIR__ . "/../../Data/dl/activities";
+        $dest      = __DIR__ . "/../../Data/dl/tmp";
+        $directory = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
+        $iterator  = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::SELF_FIRST);
+        foreach ($iterator as $item) {
+            if ($item->isDir()) {
+              mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            } else {
+              copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+            }
+        }
+    }
+
+    /**
+     * @AfterScenario @filer
+     */
+    public static function deleteFiles()
+    {
+        $dest = __DIR__ . "/../../Data/dl/tmp";
+        exec("rm -r {$dest}");
+        mkdir($dest, 0755);
     }
 
     /**
@@ -115,6 +147,35 @@ class FeatureContext extends BehatContext
     {
         if ($exception != $this->exception) {
             throw new Exception("Expected: '{$exception}'; got: '{$this->exception}'");
+        }
+    }
+
+    /**
+     * @Given /^je veux remplacer le fichier "([^"]*)" situé dans "([^"]*)" par le fichier "([^"]*)"$/
+     * @Given /^je veux ajouter le fichier "([^"]*)" situé dans "([^"]*)" avec le fichier "([^"]*)"$/
+     */
+    public function jeVeuxRemplacerLeFichierSitueDansParLeFichier($path, $basepath, $file)
+    {
+        $app     = self::$silex_app;
+        $file    = realpath($this->results_path . "/" . $file);
+        $content = file_get_contents($file);
+        try {
+            $this->data = $app["file-manager"]->put($path, $content, $basepath)->getReasonPhrase();
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
+        }
+    }
+
+    /**
+     * @Given /^je veux supprimer le fichier "([^"]*)" situé dans "([^"]*)"$/
+     */
+    public function jeVeuxSupprimerLeFichierSitueDans($path, $basepath)
+    {
+        $app = self::$silex_app;
+        try {
+            $this->data = $app["file-manager"]->delete($path, $basepath)->getReasonPhrase();
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
         }
     }
 }

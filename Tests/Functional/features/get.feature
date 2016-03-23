@@ -1,6 +1,6 @@
 # language: fr
 
-@feature/get
+@feature/get @filer
 Fonctionnalité: Récupère le contenu d'un ou plusieurs fichiers
 
 Scénario: Récupérer le contenu d'un fichier
