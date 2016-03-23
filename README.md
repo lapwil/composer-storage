@@ -6,8 +6,8 @@ Après clone du dépot, se mettre à la racine et :
 
  * composer install
 
-Pour que les tests se lancent:
-==============================
+Pour que les tests fonctionnent, il faut :
+==========================================
 
 * Il faut php56
 * brew tap homebrew/nginx

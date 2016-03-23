@@ -51,7 +51,7 @@ class FeatureContext extends BehatContext
     public static function startServer()
     {
         $conf = __DIR__ . "/nginx.conf";
-        $tmp = __DIR__ . "/../../Data/dl/tmp";
+        $tmp  = __DIR__ . "/../../Data/dl/tmp";
         exec("nginx -c {$conf}");
         self::deleteFiles();
     }
@@ -75,9 +75,9 @@ class FeatureContext extends BehatContext
         $iterator  = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $item) {
             if ($item->isDir()) {
-              mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                mkdir($dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             } else {
-              copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
+                copy($item, $dest . DIRECTORY_SEPARATOR . $iterator->getSubPathName());
             }
         }
     }
