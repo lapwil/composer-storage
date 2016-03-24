@@ -32,8 +32,8 @@ Scénario: Ajouter un répertoire
     Alors le résultat devrait être "Created"
 
 Scénario: Modifier plusieurs fichiers
-    Quand je veux modifier la liste de fichiers contenu dans "file_list_put.json"
-    Quand je veux récupérer le contenu des fichiers lister dans "file_list.json"
+    Quand je veux modifier la liste de fichiers contenue dans "file_list_put.json"
+    Quand je veux récupérer le contenu des fichiers listés dans "file_list.json"
     Alors le résultat devrait être identique au fichier "file_list_put.json"
 
 @forbidden

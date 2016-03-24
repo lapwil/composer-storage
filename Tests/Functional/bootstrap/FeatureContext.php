@@ -51,7 +51,6 @@ class FeatureContext extends BehatContext
     public static function startServer()
     {
         $conf = __DIR__ . "/nginx.conf";
-        $tmp  = __DIR__ . "/../../Data/dl/tmp";
         exec("nginx -c {$conf}");
         self::deleteFiles();
     }
@@ -130,7 +129,7 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux récupérer le contenu des fichiers lister dans "([^"]*)"$/
+     * @Given /^je veux récupérer le contenu des fichiers listés dans "([^"]*)"$/
      */
     public function jeVeuxRecupererLeContenuDesFichiersListerDansSitueDans($json)
     {
@@ -163,7 +162,7 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux récupérer la liste des fichiers dans "([^"]*)" contenu dans "([^"]*)" situé dans "([^"]*)"$/
+     * @Given /^je veux récupérer la liste des fichiers dans "([^"]*)" contenue dans "([^"]*)" situé dans "([^"]*)"$/
      */
     public function jeVeuxRecupererLaListeDesFichiersDansContenuDansSitueDans($path, $json, $basepath)
     {
@@ -177,13 +176,13 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux récupérer la liste des fichiers de "([^"]*)" dans "([^"]*)" contenu dans "([^"]*)" situé dans "([^"]*)"$/
+     * @Given /^je veux récupérer la liste des fichiers de "([^"]*)" dans "([^"]*)" contenue dans "([^"]*)" situé dans "([^"]*)"$/
      */
     public function jeVeuxRecupererLaListeDesFichiersDeDansContenuDansSitueDans($filter_path, $path, $json, $basepath)
     {
         $app      = self::$silex_app;
         $callback = function($file) use ($filter_path) {
-            return preg_match("#.*\/{$filter_path}\/.*#", $file["path"]);
+            return preg_match($filter_path, $file["path"]);
         };
         try {
             $this->data = $app["file-manager"]->listFiles($path, $json, $basepath, $callback);
@@ -210,8 +209,8 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux ajouter la liste de fichiers contenu dans "([^"]*)"$/
-     * @Given /^je veux modifier la liste de fichiers contenu dans "([^"]*)"$/
+     * @Given /^je veux ajouter la liste de fichiers contenue dans "([^"]*)"$/
+     * @Given /^je veux modifier la liste de fichiers contenue dans "([^"]*)"$/
      */
     public function jeVeuxModifierLaListeDeFichiersContenuDans($json)
     {
@@ -256,7 +255,7 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux supprimer la liste de fichiers contenu dans "([^"]*)"$/
+     * @Given /^je veux supprimer la liste de fichiers contenue dans "([^"]*)"$/
      */
     public function jeVeuxSupprimerLaListeDeFichiersContenuDans($json)
     {

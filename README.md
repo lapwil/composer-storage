@@ -11,7 +11,7 @@ Après clone du dépot, se mettre à la racine et :
 Pour que les tests fonctionnent, il faut :
 ==========================================
 
-* Il faut php56
+* Il faut php55
 * brew tap homebrew/nginx
 * brew install nginx-full --with-gunzip --with-webdav
 * sed -i '' -e "s#\$PWD#$PWD#g" $PWD/Tests/Functional/bootstrap/nginx.conf

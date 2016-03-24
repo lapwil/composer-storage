@@ -12,15 +12,15 @@ Scénario: Récupérer le contenu d'un fichier qui n'existe pas
     Alors je devrais avoir une exception "Not Found"
 
 Scénario: Récupérer la liste des fichiers
-    Quand je veux récupérer la liste des fichiers dans "IDV-OPTD/" contenu dans "003.json" situé dans "activities"
+    Quand je veux récupérer la liste des fichiers dans "IDV-OPTD/" contenue dans "003.json" situé dans "activities"
     Alors le résultat devrait être identique au fichier "003.json"
 
 Scénario: Récupérer la liste des fichiers d'une étape
-    Quand je veux récupérer la liste des fichiers de "Etape 1" dans "IDV-OPTD/" contenu dans "003.json" situé dans "activities"
+    Quand je veux récupérer la liste des fichiers de "#.*\/Etape 1\/.*#" dans "IDV-OPTD/" contenue dans "003.json" situé dans "activities"
     Alors le résultat devrait être identique au fichier "stage.json"
 
 Scénario: Récupérer le contenu de plusieurs fichiers
-    Quand je veux récupérer le contenu des fichiers lister dans "file_list.json"
+    Quand je veux récupérer le contenu des fichiers listés dans "file_list.json"
     Alors le résultat devrait être identique au fichier "file_list.json"
 
 Scénario: Télécharger un fichier

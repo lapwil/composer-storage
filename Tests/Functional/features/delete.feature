@@ -12,6 +12,6 @@ Scénario: Supprimer un fichier qui n'existe pas
     Alors je devrais avoir une exception "Not Found"
 
 Scénario: Supprimer une liste de fichiers
-    Quand je veux supprimer la liste de fichiers contenu dans "file_list.json"
-    Quand je veux récupérer le contenu des fichiers lister dans "file_list.json"
+    Quand je veux supprimer la liste de fichiers contenue dans "file_list.json"
+    Et    je veux récupérer le contenu des fichiers listés dans "file_list.json"
     Alors je devrais avoir une exception "Not Found"
