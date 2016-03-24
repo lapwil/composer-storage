@@ -1,0 +1,57 @@
+[
+    {
+        "path": "003\/quest\/myCRD\/conf.ini",
+        "mime\/type": "text\/plain",
+        "size": 1051
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/MyCRD.html",
+        "mime\/type": "text\/html",
+        "size": 2125
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/commands-generator.py",
+        "mime\/type": "text\/x-python",
+        "size": 1382
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/medium-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 665950
+    },
+    {
+        "path": "003\/quest\/myCRD\/public\/small-commands.lst",
+        "mime\/type": "text\/plain",
+        "size": 66004
+    },
+    {
+        "path": "003\/quest\/myCRD\/scripts\/composer.lock",
+        "mime\/type": "text\/plain",
+        "size": 7729
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 1\/public\/MyCRD.html",
+        "mime\/type": "text\/plain",
+        "size": 5
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 1\/public\/etape 1.html",
+        "mime\/type": "text\/html",
+        "size": 2985
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 1\/scripts\/correction.txt",
+        "mime\/type": "inode\/x-empty",
+        "size": 0
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Etape 2\/public\/etape 2.html",
+        "mime\/type": "text\/html",
+        "size": 1309
+    },
+    {
+        "path": "003\/quest\/myCRD\/stages\/Soutenance finale\/public\/sujet.html",
+        "mime\/type": "text\/html",
+        "size": 801
+    }
+]

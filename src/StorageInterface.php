@@ -4,7 +4,7 @@ namespace ETNA\Storage;
 
 interface StorageInterface
 {
-    public function listFiles($dir, $json, $basepath = '', Callable $callback = null);
+    public function listFiles($dir, $json, $basepath = '', callable $callback = null);
 
     public function get($file_path, $basepath = '');
     public function put($file_path, $stream, $basepath = '');

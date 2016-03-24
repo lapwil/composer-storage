@@ -16,9 +16,8 @@ class NginxStorage extends AbstractStorage
     private $client    = null;
     private $secret    = null;
     private $format    = null;
-    public  $container = [];
 
-    function __construct($url, $secret, $format = '%1$s.%2$s.%3$s')
+    public function __construct($url, $secret, $format = '%1$s.%2$s.%3$s')
     {
         $this->url    = $url;
         $this->secret = $secret;
@@ -67,7 +66,7 @@ class NginxStorage extends AbstractStorage
         return $url->withQuery($query);
     }
 
-    public function listFiles($dir, $json, $basepath = '', Callable $callback = null)
+    public function listFiles($dir, $json, $basepath = '', callable $callback = null)
     {
         $dir   = trim($dir, '/');
         $json  = trim($json, '/');
@@ -116,15 +115,7 @@ class NginxStorage extends AbstractStorage
     public function putDir($dir_path, $basepath = '')
     {
         $dir_path = trim($dir_path, '/');
-        $url      = $this->forge("{$dir_path}/.keep", $basepath);
-
-        try {
-            $request  = new Request('PUT', $url, [], '');
-            $response = $this->getHTTPClient()->send($request);
-        } catch (RequestException $exception) {
-            $response = $exception->getResponse();
-            throw new \Exception($response->getReasonPhrase(), $response->getStatusCode());
-        }
+        $response = $this->put("{$dir_path}/.keep", '', $basepath);
 
         return $response;
     }
