@@ -5,20 +5,12 @@ env:
   - DOWNLOAD_URL_KEY=toto
   - COMPOSER_PROCESS_TIMEOUT=3000
 script:
-  - nb=1 ; while [ $nb -lt 20 ] && ! echo "show databases;" | mysql -NrB -u "$MYSQL_MODULES_USER" -h "$MYSQL_MODULES_HOST" --password="$MYSQL_MODULES_PASS" ; do echo "Try n $nb mysql not ready"; nb=$(($nb + 1)); sleep 1; done
-  - echo "CREATE DATABASE IF NOT EXISTS $MYSQL_MODULES_BASE" | mysql -NrB -u "$MYSQL_MODULES_USER" -h "$MYSQL_MODULES_HOST" --password="$MYSQL_MODULES_PASS"
-  - mkdir -p tmp/keys
-  - openssl genrsa  -out tmp/keys/private.key 2048
-  - openssl rsa -in tmp/keys/private.key -pubout -out tmp/keys/public.key
   - composer self-update
   - composer install --dev --no-interaction --prefer-source
-  - sed -i '' -e "s#\$PWD#$PWD#g" $PWD/Tests/Functional/bootstrap/nginx.conf
+  - echo $DRONE_BUILD_DIR
+  - sed -i '' -e "s#\$PWD#$DRONE_BUILD_DIR#g" $DRONE_BUILD_DIR/Tests/Functional/bootstrap/nginx.conf
   - composer phing
   - composer coveralls
-services:
-  - bluetna/drone-mariadb
-  - bluetna/drone-elasticsearch
-  - rabbitmq
 notify:
   slack:
     webhook_url: $$SLACK_WEBHOOK_URL

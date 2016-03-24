@@ -1,6 +1,6 @@
 # language: fr
 
-@feature/delete @filer
+@feature/delete
 Fonctionnalité: Supprime un fichier
 
 Scénario: Supprimer un fichier

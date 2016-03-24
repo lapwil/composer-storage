@@ -65,7 +65,7 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @BeforeScenario @filer
+     * @BeforeScenario
      */
     public static function addFiles()
     {
@@ -83,7 +83,7 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @AfterScenario @filer
+     * @AfterScenario
      */
     public static function deleteFiles()
     {

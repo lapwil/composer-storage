@@ -1,6 +1,6 @@
 # language: fr
 
-@feature/put @filer
+@feature/put
 Fonctionnalité: Ajoute ou remplace un fichier
 
 Scénario: Remplacer un fichier
@@ -36,7 +36,7 @@ Scénario: Modifier plusieurs fichiers
     Quand je veux récupérer le contenu des fichiers lister dans "file_list.json"
     Alors le résultat devrait être identique au fichier "file_list_put.json"
 
-@forbidden @wip
+@forbidden
 Scénario: Ajouter un fichier alors que je n'ai pas le droit
     Quand je veux remplacer le fichier "IDV-OPTD/003/quest/myCRD/conf.ini" situé dans "activities" par le fichier "conf_modified.ini"
     Alors je devrais avoir une exception "Internal Server Error"

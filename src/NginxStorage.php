@@ -45,7 +45,7 @@ class NginxStorage extends AbstractStorage
     }
 
     // $path = /activities/public/tpotperjfgsl
-    protected function forge($file_path, $base_path = '')
+    protected function forge($file_path, $base_path = "")
     {
         // On s'assure de ne pas avoir de / a la fin de la chaine
         // parce que celui de base est mis dans le constructeur
