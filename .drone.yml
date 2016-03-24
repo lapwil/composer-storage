@@ -5,10 +5,9 @@ env:
   - DOWNLOAD_URL_KEY=toto
   - COMPOSER_PROCESS_TIMEOUT=3000
 script:
+  - sed -i "s#\$PWD#$DRONE_BUILD_DIR#g" $DRONE_BUILD_DIR/Tests/Functional/bootstrap/nginx.conf
   - composer self-update
   - composer install --dev --no-interaction --prefer-source
-  - echo $DRONE_BUILD_DIR
-  - sed -i '' -e "s#\$PWD#$DRONE_BUILD_DIR#g" $DRONE_BUILD_DIR/Tests/Functional/bootstrap/nginx.conf
   - composer phing
   - composer coveralls
 notify:
