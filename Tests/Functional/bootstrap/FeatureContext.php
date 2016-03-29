@@ -52,6 +52,7 @@ class FeatureContext extends BehatContext
     {
         $conf = __DIR__ . "/nginx.conf";
         exec("nginx -c {$conf}");
+        echo("Nginx server started\n");
         self::deleteFiles();
     }
 
@@ -61,6 +62,7 @@ class FeatureContext extends BehatContext
     public static function stopServer()
     {
         exec("nginx -s stop");
+        echo("\nNginx server stopped\n");
     }
 
     /**
@@ -90,15 +92,6 @@ class FeatureContext extends BehatContext
         chmod("{$dest}", 0755);
         exec("rm -r {$dest}");
         mkdir($dest, 0755);
-    }
-
-    /**
-     * @BeforeScenario @forbidden
-     */
-    public static function setErrorRights()
-    {
-        $tmp = __DIR__ . "/../../Data/dl/tmp";
-        chmod("{$tmp}", 0644);
     }
 
     /**
