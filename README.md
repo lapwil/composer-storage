@@ -16,7 +16,6 @@ Pour que les tests fonctionnent, il faut :
 * Il faut php55
 * brew tap homebrew/nginx
 * brew install nginx-full --with-gunzip --with-webdav
-* sed -i '' -e "s#\$PWD#$PWD#g" $PWD/Tests/Functional/bootstrap/nginx.conf
 
 Pour lancer les tests:
 =====================

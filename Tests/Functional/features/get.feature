@@ -16,7 +16,7 @@ Scénario: Récupérer la liste des fichiers
     Alors le résultat devrait être identique au fichier "003.json"
 
 Scénario: Récupérer la liste des fichiers d'une étape
-    Quand je veux récupérer la liste des fichiers de "#.*\/Etape 1\/.*#" dans "IDV-OPTD/" contenue dans "003.json" situé dans "activities"
+    Quand je récupère la liste dans "IDV-OPTD/" contenue dans "003.json" situé dans "activities" filtré avec "#.*\/Etape 1\/.*#"
     Alors le résultat devrait être identique au fichier "stage.json"
 
 Scénario: Récupérer le contenu de plusieurs fichiers

@@ -6,9 +6,7 @@ env:
   - COMPOSER_PROCESS_TIMEOUT=3000
   - COVERALLS_REPO_TOKEN=$$COVERALLS_TOKEN
   - COVERALLS_SERVICE_NAME=drone.io
-  - COMPOSER_PROCESS_TIMEOUT=900
 script:
-  - sed -i "s#\$PWD#$DRONE_BUILD_DIR#g" $DRONE_BUILD_DIR/Tests/Functional/bootstrap/nginx.conf
   - composer self-update
   - composer install --dev --no-interaction --prefer-source
   - composer phing
