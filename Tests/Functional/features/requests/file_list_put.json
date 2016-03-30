@@ -1,0 +1,12 @@
+[
+    {
+        "path": "IDV-OPTD/003/quest/myCRD/conf.ini",
+        "basepath": "activities",
+        "stream": "test"
+    },
+    {
+        "path": "IDV-OPTD/003/quest/myCRD/public/commands-generator.py",
+        "basepath": "activities",
+        "stream": "test2"
+    }
+]

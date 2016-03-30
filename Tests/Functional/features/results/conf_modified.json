@@ -1,0 +1,1 @@
+"[config]\nstages[] = Etape 1\nstages[] = Etape 2\nstages[] = Soutenance finale\n\n[Etape 1]\nduration = 5 weeks 6 days 14 hours 42 minutes\nstart = +0 day\n\n[Etape 2]\nduration = 10 weeks 6 days 14 hours 42 minutes\nstart = +0 day\n\n[Soutenance finale]\nduration = 13 weeks 3 days 13 hours 37 minutes\nstart = +0 day\n"
