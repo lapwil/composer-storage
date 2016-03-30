@@ -2,6 +2,8 @@
 Silex provider for file storage
 
 [![Build Status](http://drone.etna-alternance.net/api/badge/github.com/etna-alternance/composer-storage/status.svg?branch=master)](http://drone.etna-alternance.net/github.com/etna-alternance/composer-storage)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/etna-alternance/composer-storage/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/etna-alternance/composer-storage/?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/etna-alternance/composer-storage/badge.svg?branch=master)](https://coveralls.io/github/etna-alternance/composer-storage?branch=master)
 
 Après clone du dépot, se mettre à la racine et :
 ================================================
