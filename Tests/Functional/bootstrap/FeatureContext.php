@@ -42,9 +42,9 @@ class FeatureContext extends BehatContext
      */
     public static function startServer()
     {
-        $prefix = __DIR__ . "/../..";
+        $prefix = realpath(__DIR__ . "/../..");
         $conf   = __DIR__ . "/nginx.conf";
-        exec("nginx -c {$conf} -p ${prefix}");
+        exec("nginx -c {$conf} -p ${prefix}/");
         echo("Nginx server started\n");
         self::deleteFiles();
     }
@@ -63,8 +63,8 @@ class FeatureContext extends BehatContext
      */
     public static function addFiles()
     {
-        $path      = __DIR__ . "/../../Data/dl/activities";
-        $dest      = __DIR__ . "/../../Data/dl/tmp";
+        $path      = realpath(__DIR__ . "/../../Data/dl/activities");
+        $dest      = realpath(__DIR__ . "/../../Data/dl/tmp");
         $directory = new RecursiveDirectoryIterator($path, RecursiveDirectoryIterator::SKIP_DOTS);
         $iterator  = new RecursiveIteratorIterator($directory, RecursiveIteratorIterator::SELF_FIRST);
         foreach ($iterator as $item) {
@@ -81,7 +81,7 @@ class FeatureContext extends BehatContext
      */
     public static function deleteFiles()
     {
-        $dest = __DIR__ . "/../../Data/dl/tmp";
+        $dest = realpath(__DIR__ . "/../../Data/dl/tmp");
         chmod("{$dest}", 0755);
         exec("rm -r {$dest}");
         mkdir($dest, 0755);
@@ -120,7 +120,7 @@ class FeatureContext extends BehatContext
     {
         $json  = realpath($this->requests_path . $json);
         $files = json_decode(file_get_contents($json), true);
-        if ($files === null) {
+        if (null === $files) {
             throw new Exception("json_decode error");
         }
 
@@ -160,7 +160,7 @@ class FeatureContext extends BehatContext
     /**
      * @Given /^je récupère la liste dans "([^"]*)" contenue dans "([^"]*)" situé dans "([^"]*)" filtré avec "([^"]*)"$/
      */
-    public function jeRecupereLaListeDeDansContenuDansSitueDans($path, $json, $basepath, $filter_path)
+    public function jeRecupereLaListeDansContenueDansSitueDansFiltreAvec($path, $json, $basepath, $filter_path)
     {
         $callback = function($file) use ($filter_path) {
             return preg_match($filter_path, $file["path"]);
@@ -196,7 +196,7 @@ class FeatureContext extends BehatContext
     {
         $json  = realpath($this->requests_path . $json);
         $files = json_decode(file_get_contents($json), true);
-        if ($files === null) {
+        if (null === $files) {
             throw new Exception("json_decode error");
         }
 
@@ -238,7 +238,7 @@ class FeatureContext extends BehatContext
     {
         $json  = realpath($this->requests_path . $json);
         $files = json_decode(file_get_contents($json), true);
-        if ($files === null) {
+        if (null === $files) {
             throw new Exception("json_decode error");
         }
 
@@ -268,7 +268,7 @@ class FeatureContext extends BehatContext
     public function leResultatDevraitRessemblerAuJsonSuivant($string)
     {
         $result = json_decode($string);
-        if ($result === null) {
+        if (null === $result) {
             throw new Exception("json_decode error");
         }
 
@@ -290,7 +290,7 @@ class FeatureContext extends BehatContext
      */
     public function jeDevraisAvoirUneException($exception)
     {
-        if ($exception != $this->exception) {
+        if ($exception !== $this->exception) {
             throw new Exception("Expected: '{$exception}'; got: '{$this->exception}'");
         }
     }
