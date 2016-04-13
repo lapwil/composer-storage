@@ -32,7 +32,7 @@ Scénario: Ajouter un répertoire
     Alors le résultat devrait être "Created"
 
 Scénario: Ajouter plusieurs répertoires
-    Quand je veux ajouter la liste de répertoire contenu dans "folder_list.json"
+    Quand je veux ajouter la liste de répertoire contenue dans "folder_list.json"
     Alors les résultats devraient être "Created"
 
 Scénario: Modifier plusieurs fichiers

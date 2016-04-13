@@ -296,9 +296,9 @@ class FeatureContext extends BehatContext
     }
 
     /**
-     * @Given /^je veux ajouter la liste de répertoire contenu dans "([^"]*)"$/
+     * @Given /^je veux ajouter la liste de répertoire contenue dans "([^"]*)"$/
      */
-    public function jeVeuxAjouterLaListeDeRepertoireContenuDans($json)
+    public function jeVeuxAjouterLaListeDeRepertoireContenueDans($json)
     {
         $json  = realpath($this->requests_path . $json);
         $files = json_decode(file_get_contents($json), true);
