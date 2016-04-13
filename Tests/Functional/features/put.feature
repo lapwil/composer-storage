@@ -31,6 +31,10 @@ Scénario: Ajouter un répertoire
     Quand je veux ajouter le répertoire "NOO-XIST/001/project/NoXist/" situé dans "activities"
     Alors le résultat devrait être "Created"
 
+Scénario: Ajouter plusieurs répertoires
+    Quand je veux ajouter la liste de répertoire contenu dans "folder_list.json"
+    Alors les résultats devraient être "Created"
+
 Scénario: Modifier plusieurs fichiers
     Quand je veux modifier la liste de fichiers contenue dans "file_list_put.json"
     Quand je veux récupérer le contenu des fichiers listés dans "file_list.json"

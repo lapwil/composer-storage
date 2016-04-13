@@ -147,6 +147,23 @@ class NginxStorage extends AbstractStorage
     }
 
     /**
+     * Insert multiple folders on remote server
+     *
+     * @param  array $folders Folders with path and basepath
+     *
+     * @return array
+     */
+    public function putFolders(array $folders)
+    {
+        $responses = [];
+        foreach ($folders as $folder) {
+            $responses[$folder["path"]] = $this->putDir($folder["path"], $folder["basepath"]);
+        }
+
+        return $responses;
+    }
+
+    /**
      * Delete one file on remote server
      *
      * @param  string $file_path file path

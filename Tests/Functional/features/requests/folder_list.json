@@ -1,0 +1,10 @@
+[
+    {
+        "path": "IDV-OPTD/003/quest/myCRD/test",
+        "basepath": "activities"
+    },
+    {
+        "path": "IDV-OPTD/003/quest/myCRD/test2/",
+        "basepath": "activities"
+    }
+]

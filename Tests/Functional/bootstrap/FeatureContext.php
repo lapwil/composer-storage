@@ -279,7 +279,7 @@ class FeatureContext extends BehatContext
     /**
      * @Then /^le résultat devrait être "([^"]*)"$/
      */
-    public function laResultatDevraitEtre($error_message)
+    public function leResultatDevraitEtre($error_message)
     {
         $this->check($error_message, $this->data, "result", $errors);
         $this->handleErrors($this->data, $errors);
@@ -292,6 +292,39 @@ class FeatureContext extends BehatContext
     {
         if ($exception !== $this->exception) {
             throw new Exception("Expected: '{$exception}'; got: '{$this->exception}'");
+        }
+    }
+
+    /**
+     * @Given /^je veux ajouter la liste de répertoire contenu dans "([^"]*)"$/
+     */
+    public function jeVeuxAjouterLaListeDeRepertoireContenuDans($json)
+    {
+        $json  = realpath($this->requests_path . $json);
+        $files = json_decode(file_get_contents($json), true);
+        if (null === $files) {
+            throw new Exception("json_decode error");
+        }
+
+        try {
+            $this->data = $this->app["file-manager"]->putFolders($files);
+        } catch (\Exception $exception) {
+            $this->exception = $exception->getMessage();
+        }
+
+        foreach ($this->data as &$data) {
+            $data = $data->getReasonPhrase();
+        }
+    }
+
+    /**
+     * @Then /^les résultats devraient être "([^"]*)"$/
+     */
+    public function lesResultatsDevraientEtre($error_message)
+    {
+        foreach ($this->data as $data) {
+            $this->check($error_message, $data, "result", $errors);
+            $this->handleErrors($data, $errors);
         }
     }
 }
