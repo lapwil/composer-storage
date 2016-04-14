@@ -17,6 +17,7 @@ abstract class AbstractStorage implements StorageInterface
         foreach ($files as $file) {
             $result[$file["path"]] = $this->getFile($file["path"], $file["basepath"]);
         }
+
         return $result;
     }
 
@@ -27,9 +28,12 @@ abstract class AbstractStorage implements StorageInterface
      */
     public function putFiles(array $files)
     {
+        $responses = [];
         foreach ($files as $file) {
-            $this->putFile($file["path"], $file["stream"], $file["basepath"]);
+            $responses[$file["path"]] = $this->putFile($file["path"], $file["stream"], $file["basepath"]);
         }
+
+        return $responses;
     }
 
     /**
@@ -39,8 +43,11 @@ abstract class AbstractStorage implements StorageInterface
      */
     public function deleteFiles(array $files)
     {
+        $responses = [];
         foreach ($files as $file) {
-            $this->deleteFile($file["path"], $file["basepath"]);
+            $responses[$file["path"]] = $this->deleteFile($file["path"], $file["basepath"]);
         }
+
+        return $responses;
     }
 }
